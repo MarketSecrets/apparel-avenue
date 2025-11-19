@@ -1,0 +1,68 @@
+import { Product } from "@/contexts/CartContext";
+
+export const products: Product[] = [
+  {
+    id: 1,
+    name: "Classic White T-Shirt",
+    price: 29.99,
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80",
+    category: "T-Shirts",
+    description: "Comfortable cotton t-shirt perfect for everyday wear",
+  },
+  {
+    id: 2,
+    name: "Denim Jacket",
+    price: 89.99,
+    image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=500&q=80",
+    category: "Jackets",
+    description: "Classic denim jacket with a modern fit",
+  },
+  {
+    id: 3,
+    name: "Black Hoodie",
+    price: 49.99,
+    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500&q=80",
+    category: "Hoodies",
+    description: "Cozy hoodie for chilly days",
+  },
+  {
+    id: 4,
+    name: "Slim Fit Jeans",
+    price: 69.99,
+    image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80",
+    category: "Jeans",
+    description: "Modern slim fit jeans in dark wash",
+  },
+  {
+    id: 5,
+    name: "Cotton Shirt",
+    price: 39.99,
+    image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500&q=80",
+    category: "Shirts",
+    description: "Crisp cotton shirt for formal occasions",
+  },
+  {
+    id: 6,
+    name: "Summer Dress",
+    price: 59.99,
+    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&q=80",
+    category: "Dresses",
+    description: "Light and breezy summer dress",
+  },
+  {
+    id: 7,
+    name: "Leather Jacket",
+    price: 199.99,
+    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&q=80",
+    category: "Jackets",
+    description: "Premium leather jacket with classic styling",
+  },
+  {
+    id: 8,
+    name: "Striped T-Shirt",
+    price: 34.99,
+    image: "https://images.unsplash.com/photo-1503341733017-1901578f9f1e?w=500&q=80",
+    category: "T-Shirts",
+    description: "Casual striped t-shirt for relaxed style",
+  },
+];
