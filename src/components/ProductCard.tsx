@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Product } from "@/contexts/CartContext";
@@ -17,6 +18,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const { toast } = useToast();
   const [selectedSize, setSelectedSize] = useState<string>("M");
@@ -44,21 +46,30 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <p className="mt-2 text-sm text-muted-foreground">{product.description}</p>
         <p className="mt-2 text-lg font-bold text-foreground">${product.price.toFixed(2)}</p>
       </CardContent>
-      <CardFooter className="flex gap-2 p-4 pt-0">
-        <Select value={selectedSize} onValueChange={setSelectedSize}>
-          <SelectTrigger className="w-24">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="XS">XS</SelectItem>
-            <SelectItem value="S">S</SelectItem>
-            <SelectItem value="M">M</SelectItem>
-            <SelectItem value="L">L</SelectItem>
-            <SelectItem value="XL">XL</SelectItem>
-          </SelectContent>
-        </Select>
-        <Button onClick={handleAddToCart} className="flex-1">
-          Add to Cart
+      <CardFooter className="flex flex-col gap-2 p-4 pt-0">
+        <div className="flex w-full gap-2">
+          <Select value={selectedSize} onValueChange={setSelectedSize}>
+            <SelectTrigger className="w-24">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="XS">XS</SelectItem>
+              <SelectItem value="S">S</SelectItem>
+              <SelectItem value="M">M</SelectItem>
+              <SelectItem value="L">L</SelectItem>
+              <SelectItem value="XL">XL</SelectItem>
+            </SelectContent>
+          </Select>
+          <Button onClick={handleAddToCart} className="flex-1">
+            Add to Cart
+          </Button>
+        </div>
+        <Button
+          variant="outline"
+          onClick={() => navigate(`/product/${product.id}`)}
+          className="w-full"
+        >
+          View Details
         </Button>
       </CardFooter>
     </Card>

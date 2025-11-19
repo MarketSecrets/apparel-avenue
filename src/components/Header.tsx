@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
   const { user, logout, isAuthenticated } = useAuth();
   const { getTotalItems } = useCart();
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -15,10 +19,38 @@ const Header = () => {
           ClothesShop
         </Link>
 
-        <nav className="flex items-center gap-4">
-          <Link to="/">
-            <Button variant="ghost">Products</Button>
-          </Link>
+        <div className="flex items-center gap-6">
+          <nav className="hidden gap-6 md:flex">
+            <Link
+              to="/"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/") ? "text-foreground" : "text-muted-foreground"
+              )}
+            >
+              Home
+            </Link>
+            <Link
+              to="/shop"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/shop") ? "text-foreground" : "text-muted-foreground"
+              )}
+            >
+              Shop
+            </Link>
+            <Link
+              to="/contact"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/contact") ? "text-foreground" : "text-muted-foreground"
+              )}
+            >
+              Contact
+            </Link>
+          </nav>
+
+          <div className="flex items-center gap-4">
 
           <Link to="/cart" className="relative">
             <Button variant="ghost" size="icon">
@@ -45,7 +77,8 @@ const Header = () => {
               </Button>
             </Link>
           )}
-        </nav>
+          </div>
+        </div>
       </div>
     </header>
   );
