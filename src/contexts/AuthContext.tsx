@@ -3,12 +3,19 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 interface User {
   email: string;
   name: string;
+  age?: string;
+  gender?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zipCode?: string;
+  phone?: string;
 }
 
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<boolean>;
-  register: (email: string, password: string, name: string) => Promise<boolean>;
+  register: (email: string, password: string, name: string, additionalData?: Partial<User>) => Promise<boolean>;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -40,20 +47,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return false;
   };
 
-  const register = async (email: string, password: string, name: string): Promise<boolean> => {
+  const register = async (email: string, password: string, name: string, additionalData?: Partial<User>): Promise<boolean> => {
     const users = JSON.parse(localStorage.getItem("users") || "[]");
     
     if (users.find((u: any) => u.email === email)) {
       return false;
     }
 
-    const newUser = { email, password, name };
+    const newUser = { email, password, name, ...additionalData };
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
 
-    const userData = { email, name };
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
     return true;
   };
 

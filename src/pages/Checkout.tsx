@@ -25,9 +25,23 @@ const Checkout = () => {
     phone: "",
   });
 
+  const [paymentData, setPaymentData] = useState({
+    cardNumber: "",
+    cardName: "",
+    expiryDate: "",
+    cvv: "",
+  });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handlePaymentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPaymentData({
+      ...paymentData,
       [e.target.name]: e.target.value,
     });
   };
@@ -151,7 +165,67 @@ const Checkout = () => {
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full">
+                </form>
+              </CardContent>
+            </Card>
+
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle>Payment Information</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="cardName">Cardholder Name</Label>
+                    <Input
+                      id="cardName"
+                      name="cardName"
+                      value={paymentData.cardName}
+                      onChange={handlePaymentChange}
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="cardNumber">Card Number</Label>
+                    <Input
+                      id="cardNumber"
+                      name="cardNumber"
+                      value={paymentData.cardNumber}
+                      onChange={handlePaymentChange}
+                      placeholder="1234 5678 9012 3456"
+                      maxLength={19}
+                      required
+                    />
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="expiryDate">Expiry Date</Label>
+                      <Input
+                        id="expiryDate"
+                        name="expiryDate"
+                        value={paymentData.expiryDate}
+                        onChange={handlePaymentChange}
+                        placeholder="MM/YY"
+                        maxLength={5}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="cvv">CVV</Label>
+                      <Input
+                        id="cvv"
+                        name="cvv"
+                        type="password"
+                        value={paymentData.cvv}
+                        onChange={handlePaymentChange}
+                        placeholder="123"
+                        maxLength={4}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <Button type="submit" className="w-full" onClick={handleSubmit}>
                     Place Order
                   </Button>
                 </form>
