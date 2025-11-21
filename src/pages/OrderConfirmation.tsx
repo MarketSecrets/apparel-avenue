@@ -28,11 +28,22 @@ const OrderConfirmation = () => {
             Thank you for your purchase. Your order has been placed successfully.
           </p>
 
-          <Card className="mt-8 text-left">
+          <Card className="mt-8 text-left bg-primary/5 border-primary/20">
+            <CardContent className="p-6">
+              <div className="text-center">
+                <p className="text-sm text-muted-foreground">Your Order ID</p>
+                <p className="text-3xl font-bold text-primary mt-2">{order.id}</p>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Save this ID to track your order
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6 text-left">
             <CardContent className="p-6 space-y-4">
               <div>
                 <h2 className="text-lg font-semibold text-foreground">Order Details</h2>
-                <p className="text-sm text-muted-foreground">Order ID: {order.id}</p>
               </div>
 
               <div>
@@ -71,8 +82,11 @@ const OrderConfirmation = () => {
             </CardContent>
           </Card>
 
-          <Link to="/" className="mt-8 inline-block">
+          <Link to="/order-confirmation" className="mt-8 inline-block">
             <Button>Continue Shopping</Button>
+          </Link>
+          <Link to="/track-order" className="mt-4 inline-block">
+            <Button variant="outline">Track Order</Button>
           </Link>
         </div>
       </main>
