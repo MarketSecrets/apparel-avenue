@@ -48,6 +48,26 @@ const Header = () => {
             >
               Contact
             </Link>
+            <Link
+              to="/track-order"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                isActive("/track-order") ? "text-foreground" : "text-muted-foreground"
+              )}
+            >
+              Track Order
+            </Link>
+            {isAuthenticated && (
+              <Link
+                to="/order-history"
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  isActive("/order-history") ? "text-foreground" : "text-muted-foreground"
+                )}
+              >
+                Orders
+              </Link>
+            )}
           </nav>
 
           <div className="flex items-center gap-4">
