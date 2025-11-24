@@ -36,7 +36,7 @@ pipeline {
                 stage('integration tests') {
                     agent {
                         docker {
-                            image 'mcr.microsoft.com/playwright:v1.54.2-jammy'
+                            image 'mcr.microsoft.com/playwright:v1.56.1-jammy'
                             reuseNode true
                         }
                     }
@@ -62,12 +62,12 @@ pipeline {
         stage('e2e') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.54.2-jammy'
+                    image 'mcr.microsoft.com/playwright:v1.56.1-jammy'
                     reuseNode true
                 }
             }
             environment {
-                E2E_BASE_URL = 'https://spanish-cards.netlify.app/'
+                E2E_BASE_URL = 'http://localhost:8081/'
             }
             steps {
                 sh 'npx playwright test'
