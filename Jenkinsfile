@@ -15,7 +15,7 @@ pipeline {
             }
             steps {
                 sh 'npm i'
-                sh 'npm run dev'
+                sh 'npm run build'
             }
         }
 
