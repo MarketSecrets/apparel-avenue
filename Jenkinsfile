@@ -14,8 +14,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'npm ci'
-                sh 'npm run build'
+                sh 'npm i'
+                sh 'npm run dev'
             }
         }
 
